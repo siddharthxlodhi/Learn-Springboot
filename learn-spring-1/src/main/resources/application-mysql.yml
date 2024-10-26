@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/student
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: mysql
+springdoc:
+  swagger-ui:
+    path: /doc
