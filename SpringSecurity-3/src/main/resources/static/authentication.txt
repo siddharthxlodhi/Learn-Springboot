@@ -1,0 +1,32 @@
+1. Client Request
+The process begins when a client sends a request to access a secured resource.
+
+2. Security Filter Chain
+Spring Security uses a chain of filters to process the request. The main filter is DelegatingFilterProxy, which delegates to FilterChainProxy.
+
+3. Authentication Filter
+The UsernamePasswordAuthenticationFilter intercepts the request and extracts the username and password.
+
+4. Authentication Manager
+The filter passes the credentials to the AuthenticationManager, which is responsible for authenticating the user.
+
+5. Authentication Provider
+The AuthenticationManager delegates the authentication to one or more AuthenticationProvider instances. Each provider performs specific authentication logic.
+
+6. UserDetailsService
+If the DaoAuthenticationProvider is used, it calls the UserDetailsService to load user details from a database or another source.
+
+7. Password Encoding
+The UserDetailsService returns a UserDetails object, and the AuthenticationProvider compares the provided password with the stored password using a PasswordEncoder.
+
+8. Authentication Success
+If the credentials are valid, the AuthenticationProvider returns an Authentication object, indicating a successful authentication.
+
+9. Security Context
+The SecurityContextHolder stores the Authentication object, making it available throughout the application.
+
+10. Access Decision
+The FilterSecurityInterceptor checks if the authenticated user has the necessary permissions to access the requested resource.
+
+11. Response to Client
+If the user is authorized, the request proceeds to the application, and the response is sent back to the client. If not, an access denied error is returned.
